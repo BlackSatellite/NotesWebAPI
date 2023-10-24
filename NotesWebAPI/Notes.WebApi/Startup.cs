@@ -15,6 +15,7 @@ using Notes.Persistence;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -57,12 +58,14 @@ namespace Notes.WebApi
             {
                 config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                config.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })
                 .AddJwtBearer("Bearer", options =>
                 {
-                    options.Authority = "https://localhost:44308/";
+                    options.Authority = "https://localhost:44308";
                     options.Audience = "NotesWebAPI";
                     options.RequireHttpsMetadata = false;
+                    options.MapInboundClaims = false;
                 });
 
             services.AddVersionedApiExplorer(options =>
