@@ -23,29 +23,6 @@ namespace Notes.WebApi
             foreach (var description in _provider.ApiVersionDescriptions)
             {
                 var apiVersion = description.ApiVersion.ToString();
-                options.SwaggerDoc(description.GroupName,
-                    new OpenApiInfo
-                    {
-                        Version = apiVersion,
-                        Title = $"Notes API {apiVersion}",
-                        Description =
-                            "A simple example ASP NET Core Web API. Professional way",
-                        TermsOfService =
-                            new Uri("https://www.youtube.com/c/PlatinumTechTalks"),
-                        Contact = new OpenApiContact
-                        {
-                            Name = " Platinum Chat",
-                            Email = string.Empty,
-                            Url =
-                                new Uri("https://t.me/platinum_chat")
-                        },
-                        License = new OpenApiLicense
-                        {
-                            Name = "Platinum Telegram Channel",
-                            Url =
-                                new Uri("https://t.me/platinum_tech_talks")
-                        }
-                    });
 
                 options.AddSecurityDefinition($"AuthToken {apiVersion}",
                     new OpenApiSecurityScheme
